@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://cxf.apache.org/jaxrs 
+			http://cxf.apache.org/schemas/jaxrs.xsd
+			http://cxf.apache.org/jaxws 
+			http://cxf.apache.org/schemas/jaxws.xsd
+			http://www.springframework.org/schema/beans  
+           	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd "
+           	default-lazy-init="true">
+
+	<description>Apache CXF的 Service配置</description>
+	<!-- WebService的实现Bean定义 -->
+	<!-- <bean id="BusinessServiceImpl" class="com.tbp.webservice.taxpayer.service.impl.BusinessServiceImpl" ></bean> -->
+    <!-- <jaxws:endpoint id="BusinessService" implementor="#BusinessServiceImpl" address="/tbp" ></jaxws:endpoint> -->
+    <!-- 智能决策平台接收税银前置平台推送的税务数据和贷款申请信息 -->
+    <bean id="GdReturnTaxAndLoanServiceImpl" class="com.dcits.govsbu.sd.taxbankportal.gdrz.webservice.impl.GdReturnTaxAndLoanServiceImpl"></bean>
+    <jaxws:endpoint id="GdReturnTaxAndLoanService" implementor="#GdReturnTaxAndLoanServiceImpl" address="/returnTaxAndLoanData"></jaxws:endpoint>
+	
+</beans>    

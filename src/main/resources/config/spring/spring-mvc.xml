@@ -1,0 +1,202 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+  http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context-4.1.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+  http://www.springframework.org/schema/aop 
+  http://www.springframework.org/schema/aop/spring-aop-4.1.xsd ">
+
+	<!-- 默认扫描的包路径 -->
+	<!-- 设置只扫描 @Controller注解的Bean,添加 use-default-filters="false",base-package即可配置为如下方式"com.dcits.govsbu.sd.taxbankplatform" -->
+	<context:component-scan base-package="com.dcits.govsbu.sd.taxbankportal.*.controller"/>
+	<context:component-scan base-package="com.dcits.govsbu.sd.hntaxbankportal.*.controller"/>
+
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="com.dcits.govsbu.sd.taxbankportal.util.DateFormatter"></bean>
+			</set>
+		</property>
+	</bean>
+
+	<bean id="webBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+		<property name="conversionService" ref="conversionService"></property>
+	</bean>
+
+	<!-- spring 3.1 及之后替代 </mvc:annotation-driven> 的配置方式 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="webBindingInitializer" ref="webBindingInitializer"></property>
+		<property name="messageConverters">
+			<list>
+				<ref bean="stringConverter" />
+				<ref bean="fastjsonConverter" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 解析String请求数据 -->
+	<bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/plain;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 解析json请求数据，将json转换为java对象 -->
+	<bean id="fastjsonConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<!-- 这里顺序不能反，一定先写text/html，不然ie下出现下载提示 -->
+				<value>text/html;charset=UTF-8</value>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+		<property name="features">
+			<array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
+				<!-- 空值继续输出 -->
+				<value>WriteMapNullValue</value>
+				<!-- 防止循环引用 -->
+				<value>DisableCircularReferenceDetect</value>
+				<!-- 格式化日期,默认格式为：yyyy-MM-dd HH:mm:ss -->
+				<value>WriteDateUseDateFormat</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 防止循环引用 -->
+	<bean id="DisableCircularReferenceDetect" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+		<property name="staticField" value="com.alibaba.fastjson.serializer.SerializerFeature.DisableCircularReferenceDetect"></property>
+	</bean>
+	
+	<!-- ContentNegotiatingViewResolver视图解析器，返回多视图 -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1"></property>
+		<!-- 这里是否忽略掉accept header，默认就是false -->
+		<property name="ignoreAcceptHeader" value="true" />
+		<!-- 启用参数支持 -->
+		<property name="favorParameter" value="false"></property>
+		<!-- 启用扩展名支持 -->
+		<property name="favorPathExtension" value="true"></property>
+		<!-- 如果所有的mediaType都没匹配上，就会使用defaultContentType -->
+		<property name="defaultContentType" value="text/html" />
+
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+			</map>
+		</property>
+
+		<property name="defaultViews">
+			<list>
+				<!-- json视图 -->
+				<bean class="com.alibaba.fastjson.support.spring.FastJsonJsonView">
+					<property name="extractValueFromSingleKeyModel" value="true" />
+					<property name="features">
+						<array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
+							<!-- 空值继续输出 -->
+							<value>WriteMapNullValue</value>
+							<!-- 防止循环引用 -->
+							<value>DisableCircularReferenceDetect</value>
+							<!-- 格式化日期,默认格式为：yyyy-MM-dd HH:mm:ss -->
+							<value>WriteDateUseDateFormat</value>
+						</array>
+					</property>
+				</bean>
+			</list>
+		</property>
+
+		<property name="viewResolvers">
+			<list>
+				<!-- 视图解析器，根据视图的名称new ModelAndView(name)，在配置文件查找对应的bean配置 -->
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass"
+						value="org.springframework.web.servlet.view.JstlView" />
+					<property name="contentType" value="text/html" />
+					<property name="prefix" value="/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 配置静态资源，这种方式效率相对比较低,如果DispatcherServlet拦截类似 *.do 这种格式的URL，就不存在访问不到静态资源的问题 -->
+	<!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+	<bean id="multipartResolver" class="com.dcits.govsbu.sd.taxbankportal.util.CommonsMultipartResolver">
+		<!-- 默认编码 -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 文件大小最大值 -->
+		<property name="maxUploadSize" value="10485760000" />
+		<!-- 内存中的最大值 -->
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+	
+	<!-- 加载 webside.properties 配置文件 -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath*:config/webside.properties"/> 
+	<!--  上传文件路径 -->
+	<mvc:resources mapping="/image/**" location="file:${local_path}/image/" ></mvc:resources> 
+	<mvc:resources mapping="/file/**" location="file:${local_path}/file/" ></mvc:resources> 
+	<mvc:resources mapping="/video/**" location="file:${local_path}/video/" ></mvc:resources> 
+	
+	
+	<!-- 配置拦截器，由于未登录用户也可以访问，在用户访问首页的时候，系统已经为用户创建了一个userSession（只包含地区信息），拦截器拦截不存在userSession的访问 -->
+	<mvc:interceptors>
+	    <mvc:interceptor>
+	    <!--默认拦截的连接-->
+	        <mvc:mapping path="/**"/><!-- 所有 -->
+	        <!--不拦截的连接-->
+	        <mvc:exclude-mapping path="/headerUI.html"/><!-- 首页 获取session必须放行，这里获取session，程序正常运行 -->
+	        <mvc:exclude-mapping path="/register/loginUI.html"/><!-- 登录页面 -->
+	        <mvc:exclude-mapping path="/demandRelease/listUI.html"/><!-- 需求发布界面 -->
+	        <mvc:exclude-mapping path="/demandRelease/submit.html"/><!-- 需求发布提交 -->
+	        <mvc:exclude-mapping path="/register/userLogin.html"/><!-- 登录 -->
+	        <mvc:exclude-mapping path="/register/quit.html"/><!-- 退出 -->
+	        <mvc:exclude-mapping path="/register/captcha.html"/><!-- 验证码 -->
+	        <mvc:exclude-mapping path="/bankService" /> <!-- post接口-->   
+	        <mvc:exclude-mapping path="/CEBBankServlice" /> <!-- post接口-->
+	        <mvc:exclude-mapping path="/register/updatePassword.html" /> <!-- 忘记密码-->
+	        <mvc:exclude-mapping path="/hndsCpsq/hntest.html" /> <!-- 测试 -->
+	        <mvc:exclude-mapping path="/hndsCpsq/result.html" /> <!-- 测试 -->
+	        <mvc:exclude-mapping path="/hndsNewCpsq/hndsFirst.html" /> <!-- 测试 -->
+	        <mvc:exclude-mapping path="/hndsNewCpsq/connector/receptionCsbank.html" /> <!-- 湖南地税跳转地址 -->
+			<mvc:exclude-mapping path="/hndsCpsq/erResult.html" /> <!-- 扫描二维码返回 -->
+			<mvc:exclude-mapping path="/hngspersonalCenter/connector/receptionCqbank.html" /><!-- 湖南国税银行APP调用接口-->
+	        <mvc:exclude-mapping path="/personalCenter/connector/receptionCqbank.html" /><!-- 重庆银行APP调用接口-->
+	        <mvc:exclude-mapping path="/csrz/*"/><!-- 长沙银行认证结果页面 -->
+	        <mvc:exclude-mapping path="/csrztest/taxdata"/><!-- 长沙银行认证测试接口入口 -->
+	        <mvc:exclude-mapping path="/test/*"/><!-- 测试接口入口 -->
+	        <mvc:exclude-mapping path="/test/taxdata"/><!--测试从数据库获取税务数据  -->
+	        <mvc:exclude-mapping path="/sifa/*"/><!--测试司法数据指标  -->
+	        <mvc:exclude-mapping path="/dataruku/*"/>
+	        <mvc:exclude-mapping path="/csrz/authentication/reception.html"/><!-- 长沙银行电子税局返回接口 -->
+	        <mvc:exclude-mapping path="/gdrz/authentication/reception.html"/><!-- 长沙光大银行电子税局返回接口 -->
+	        <mvc:exclude-mapping path="/cs_taxbankportal/gdrz/authentication/reception.html"/><!-- 长沙光大银行电子税局返回接口 -->
+	        <mvc:exclude-mapping path="/hngspersonalCenter/*" /><!-- 湖南电子局返回接口-->
+	        <mvc:exclude-mapping path="/gdrz/*"/>
+	        <mvc:exclude-mapping path="/gdrz/toFrsjhRzjg.html"/>
+	        <mvc:exclude-mapping path="/taxbankportal/gdrz/toFrsjhRzjg.html"/>
+	        <mvc:exclude-mapping path="/cs_taxbankportal/gdrz/toFrsjhRzjg.html"/><!-- 跳转法人手机验证码验证界面 -->
+	        <mvc:exclude-mapping path="/gdrz/getadress"/>
+	        <mvc:exclude-mapping path="/gdrz/authentication"/>
+	        <mvc:exclude-mapping path="/hngspersonalCenter/authentication/reception.html" /><!-- 湖南电子局返回接口-->
+	        <mvc:exclude-mapping path="/personalCenter/connector/reception.html" /><!-- 深农商APP调用接口-->
+			<mvc:exclude-mapping path="/product/listUI.html"/> <!-- iframe金融产品页列表 -->
+			<mvc:exclude-mapping path="/demandRelease/demandListUI.html"/> <!-- iframe需求发布列表 -->
+	        <bean class="com.dcits.govsbu.sd.taxbankportal.interceptor.UserSessionInterceptor"></bean>
+	    </mvc:interceptor>
+	</mvc:interceptors>
+
+
+</beans>

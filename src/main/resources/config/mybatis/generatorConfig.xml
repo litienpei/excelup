@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+        location="D:\Development\m2\repository\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+	<context id="testTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/dl_jpxq_db" userId="tbp"
+			password="mysql">
+		</jdbcConnection>
+		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@localhost:1521:ORCL"
+			userId="dhyj"
+			password="dhyj">
+		</jdbcConnection> -->
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
+			NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="com.afterloan.pojo.to.warn.etl"
+			targetProject="dfwy-afterloan-pojo">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="com.afterloan.mapper.dao.warn.xml.etl" 
+			targetProject="dfwy-afterloan-dao">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.afterloan.mapper.dao.warn.etl" 
+			targetProject="dfwy-afterloan-dao"> 
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 指定数据库表 -->
+		
+		<table tableName="tb_demandrelease" domainObjectName="demandrelease"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<!-- <table tableName="WARN_BUSI_BILL" domainObjectName="BusiBill"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_FACTOR_DATA_BRANCH" domainObjectName="WarnBusiFactorDataBranch"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_FACTOR_RESULT" domainObjectName="WarnBusiFactorResult"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_FACTOR_SIGNAL" domainObjectName="WarnBusiFactorSignal"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_FACTOR_STATUS" domainObjectName="WarnBusiFactorStatus"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_FILE_ANALYSIS" domainObjectName="WarnBusiFileAnalysis"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_GETDATA_RECORD" domainObjectName="WarnBusiGetdataRecord"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_PRIMARY_DATA" domainObjectName="WarnBusiPrimaryData"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_QUERYDATA_LIST" domainObjectName="WarnBusiQuerydataList"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_BUSI_SIGNAL_SUMMARY" domainObjectName="WarnBusiSignalSummary"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		 -->
+		<!-- <table tableName="WARN_CNF_AUDIT" domainObjectName="WarnCnfAudit"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_BILL_FREQUENCY" domainObjectName="WarnCnfBillFrequency"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_DATASOURCE" domainObjectName="WarnCnfDatasource"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_DATASOURCE_INTERFACE" domainObjectName="WarnCnfDatasourceInterface"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_FACTOR" domainObjectName="WarnCnfFactor"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_FACTOR_DATASOURCE" domainObjectName="WarnCnfFactorDatasource"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_GETDATA_FREQ" domainObjectName="WarnCnfGetdataFreq"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_GETDATA_STAGE" domainObjectName="WarnCnfGetdataStage"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_LEVEL_FRACTION" domainObjectName="WarnCnfLevelFraction"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_LEVEL_MAPPING" domainObjectName="WarnCnfLevelMapping"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_OUTERSERVICE" domainObjectName="WarnCnfOuterservice"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_RULE" domainObjectName="WarnCnfRule"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_RULE_CONFIG" domainObjectName="WarnCnfRuleConfig"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_RULE_FACTOR" domainObjectName="WarnCnfRuleFactor"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_CNF_SERVICE_SCHEDULER" domainObjectName="WarnCnfServiceScheduler"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table> -->
+		
+		<!-- <table tableName="WARN_FACTOR_BILL_RULE" domainObjectName="WarnFactorBillRule"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_OPERATE_LOG" domainObjectName="WarnOperateLog"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		<table tableName="WARN_TASK_RECORD" domainObjectName="WarnTaskRecord"
+		enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+		 -->
+		
+		<!-- <table schema="" tableName="sys_user"></table>
+		<table schema="" tableName="sys_role"></table>
+		<table schema="" tableName="sys_permission"></table>
+		<table schema="" tableName="sys_user_role"></table>
+		<table schema="" tableName="sys_role_permission"></table> -->
+		
+		<!-- 有些表的字段需要指定java类型
+		 <table schema="" tableName="">
+			<columnOverride column="" javaType="" />
+		</table> -->
+	</context>
+</generatorConfiguration>

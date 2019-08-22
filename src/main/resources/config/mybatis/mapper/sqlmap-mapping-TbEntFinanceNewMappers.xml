@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.govsbu.sd.taxbankportal.excel.mapper.TbEntFinanceNewMappers">
+  <resultMap id="BaseResultMap" type="com.dcits.govsbu.sd.taxbankportal.excel.model.TbEntFinanceNews">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="entName" jdbcType="VARCHAR" property="entname" />
+    <result column="indName" jdbcType="VARCHAR" property="indname" />
+    <result column="encreditId" jdbcType="VARCHAR" property="encreditid" />
+    <result column="workYear" jdbcType="INTEGER" property="workyear" />
+    <result column="regMoney" jdbcType="VARCHAR" property="regmoney" />
+    <result column="comType" jdbcType="INTEGER" property="comtype" />
+    <result column="sfwgsqy" jdbcType="INTEGER" property="sfwgsqy" />
+    <result column="fxqgbze" jdbcType="VARCHAR" property="fxqgbze" />
+    <result column="fxhgbze" jdbcType="VARCHAR" property="fxhgbze" />
+    <result column="bgqmgb" jdbcType="VARCHAR" property="bgqmgb" />
+    <result column="marketValue" jdbcType="VARCHAR" property="marketvalue" />
+    <result column="latelyNetAsset" jdbcType="VARCHAR" property="latelynetasset" />
+    <result column="thrYsersProperty" jdbcType="VARCHAR" property="thrysersproperty" />
+    <result column="thrYsersNetAsset" jdbcType="VARCHAR" property="thrysersnetasset" />
+    <result column="thrquarterCash" jdbcType="VARCHAR" property="thrquartercash" />
+    <result column="thrYearsGroOfAssets" jdbcType="VARCHAR" property="thryearsgroofassets" />
+    <result column="yearRevenue" jdbcType="VARCHAR" property="yearrevenue" />
+    <result column="ReveAndGrowth" jdbcType="VARCHAR" property="reveandgrowth" />
+    <result column="thrYearsRevenue" jdbcType="VARCHAR" property="thryearsrevenue" />
+    <result column="thrYearSellgrowth" jdbcType="VARCHAR" property="thryearsellgrowth" />
+    <result column="getMoneyYear" jdbcType="INTEGER" property="getmoneyyear" />
+    <result column="sumNetMargin" jdbcType="VARCHAR" property="sumnetmargin" />
+    <result column="yearNetMargin" jdbcType="VARCHAR" property="yearnetmargin" />
+    <result column="thwYearNetMargin" jdbcType="VARCHAR" property="thwyearnetmargin" />
+    <result column="thrYearNetMargin" jdbcType="VARCHAR" property="thryearnetmargin" />
+    <result column="thrYearResearchInput" jdbcType="VARCHAR" property="thryearresearchinput" />
+    <result column="thrYearDevDiviRev" jdbcType="VARCHAR" property="thryeardevdivirev" />
+    <result column="thrYearDevDiviSell" jdbcType="VARCHAR" property="thryeardevdivisell" />
+    <result column="thrYearCountOftechn" jdbcType="VARCHAR" property="thryearcountoftechn" />
+    <result column="technPerRatio" jdbcType="VARCHAR" property="technperratio" />
+    <result column="changeOfcontro" jdbcType="INTEGER" property="changeofcontro" />
+    <result column="changeOfmanager" jdbcType="INTEGER" property="changeofmanager" />
+    <result column="changeOfMainBus" jdbcType="INTEGER" property="changeofmainbus" />
+    <result column="invisiAssetsRatio" jdbcType="VARCHAR" property="invisiassetsratio" />
+    <result column="LatelyNoUnrecoLoss" jdbcType="INTEGER" property="latelynounrecoloss" />
+    <result column="thrYearPipr" jdbcType="VARCHAR" property="thryearpipr" />
+    <result column="majorAccident" jdbcType="INTEGER" property="majoraccident" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="addTime" jdbcType="DATE" property="addtime" />
+    <result column="registerTime" jdbcType="DATE" property="registertime" />
+    <result column="ld_industry" jdbcType="VARCHAR" property="ldIndustry" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="company_status" jdbcType="VARCHAR" property="companyStatus" />
+    <result column="subsidy_amount" jdbcType="DECIMAL" property="subsidyAmount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, entName, indName, encreditId, workYear, regMoney, comType, sfwgsqy, fxqgbze, 
+    fxhgbze, bgqmgb, marketValue, latelyNetAsset, thrYsersProperty, thrYsersNetAsset, 
+    thrquarterCash, thrYearsGroOfAssets, yearRevenue, ReveAndGrowth, thrYearsRevenue, 
+    thrYearSellgrowth, getMoneyYear, sumNetMargin, yearNetMargin, thwYearNetMargin, thrYearNetMargin, 
+    thrYearResearchInput, thrYearDevDiviRev, thrYearDevDiviSell, thrYearCountOftechn, 
+    technPerRatio, changeOfcontro, changeOfmanager, changeOfMainBus, invisiAssetsRatio, 
+    LatelyNoUnrecoLoss, thrYearPipr, majorAccident, flag, addTime, registerTime, ld_industry, 
+    contact, company_status, subsidy_amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_ent_finance_new
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_ent_finance_new
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dcits.govsbu.sd.taxbankportal.excel.model.TbEntFinanceNews">
+    insert into tb_ent_finance_new (id, entName, indName, 
+      encreditId, workYear, regMoney, 
+      comType, sfwgsqy, fxqgbze, 
+      fxhgbze, bgqmgb, marketValue, 
+      latelyNetAsset, thrYsersProperty, thrYsersNetAsset, 
+      thrquarterCash, thrYearsGroOfAssets, yearRevenue, 
+      ReveAndGrowth, thrYearsRevenue, thrYearSellgrowth, 
+      getMoneyYear, sumNetMargin, yearNetMargin, 
+      thwYearNetMargin, thrYearNetMargin, thrYearResearchInput, 
+      thrYearDevDiviRev, thrYearDevDiviSell, 
+      thrYearCountOftechn, technPerRatio, changeOfcontro, 
+      changeOfmanager, changeOfMainBus, invisiAssetsRatio, 
+      LatelyNoUnrecoLoss, thrYearPipr, majorAccident, 
+      flag, addTime, registerTime, 
+      ld_industry, contact, company_status, 
+      subsidy_amount)
+    values (#{id,jdbcType=INTEGER}, #{entname,jdbcType=VARCHAR}, #{indname,jdbcType=VARCHAR}, 
+      #{encreditid,jdbcType=VARCHAR}, #{workyear,jdbcType=INTEGER}, #{regmoney,jdbcType=VARCHAR}, 
+      #{comtype,jdbcType=INTEGER}, #{sfwgsqy,jdbcType=INTEGER}, #{fxqgbze,jdbcType=VARCHAR}, 
+      #{fxhgbze,jdbcType=VARCHAR}, #{bgqmgb,jdbcType=VARCHAR}, #{marketvalue,jdbcType=VARCHAR}, 
+      #{latelynetasset,jdbcType=VARCHAR}, #{thrysersproperty,jdbcType=VARCHAR}, #{thrysersnetasset,jdbcType=VARCHAR}, 
+      #{thrquartercash,jdbcType=VARCHAR}, #{thryearsgroofassets,jdbcType=VARCHAR}, #{yearrevenue,jdbcType=VARCHAR}, 
+      #{reveandgrowth,jdbcType=VARCHAR}, #{thryearsrevenue,jdbcType=VARCHAR}, #{thryearsellgrowth,jdbcType=VARCHAR}, 
+      #{getmoneyyear,jdbcType=INTEGER}, #{sumnetmargin,jdbcType=VARCHAR}, #{yearnetmargin,jdbcType=VARCHAR}, 
+      #{thwyearnetmargin,jdbcType=VARCHAR}, #{thryearnetmargin,jdbcType=VARCHAR}, #{thryearresearchinput,jdbcType=VARCHAR}, 
+      #{thryeardevdivirev,jdbcType=VARCHAR}, #{thryeardevdivisell,jdbcType=VARCHAR}, 
+      #{thryearcountoftechn,jdbcType=VARCHAR}, #{technperratio,jdbcType=VARCHAR}, #{changeofcontro,jdbcType=INTEGER}, 
+      #{changeofmanager,jdbcType=INTEGER}, #{changeofmainbus,jdbcType=INTEGER}, #{invisiassetsratio,jdbcType=VARCHAR}, 
+      #{latelynounrecoloss,jdbcType=INTEGER}, #{thryearpipr,jdbcType=VARCHAR}, #{majoraccident,jdbcType=INTEGER}, 
+      #{flag,jdbcType=VARCHAR}, #{addtime,jdbcType=DATE}, #{registertime,jdbcType=DATE}, 
+      #{ldIndustry,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{companyStatus,jdbcType=VARCHAR}, 
+      #{subsidyAmount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dcits.govsbu.sd.taxbankportal.excel.model.TbEntFinanceNews">
+    insert into tb_ent_finance_new
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="entname != null">
+        entName,
+      </if>
+      <if test="indname != null">
+        indName,
+      </if>
+      <if test="encreditid != null">
+        encreditId,
+      </if>
+      <if test="workyear != null">
+        workYear,
+      </if>
+      <if test="regmoney != null">
+        regMoney,
+      </if>
+      <if test="comtype != null">
+        comType,
+      </if>
+      <if test="sfwgsqy != null">
+        sfwgsqy,
+      </if>
+      <if test="fxqgbze != null">
+        fxqgbze,
+      </if>
+      <if test="fxhgbze != null">
+        fxhgbze,
+      </if>
+      <if test="bgqmgb != null">
+        bgqmgb,
+      </if>
+      <if test="marketvalue != null">
+        marketValue,
+      </if>
+      <if test="latelynetasset != null">
+        latelyNetAsset,
+      </if>
+      <if test="thrysersproperty != null">
+        thrYsersProperty,
+      </if>
+      <if test="thrysersnetasset != null">
+        thrYsersNetAsset,
+      </if>
+      <if test="thrquartercash != null">
+        thrquarterCash,
+      </if>
+      <if test="thryearsgroofassets != null">
+        thrYearsGroOfAssets,
+      </if>
+      <if test="yearrevenue != null">
+        yearRevenue,
+      </if>
+      <if test="reveandgrowth != null">
+        ReveAndGrowth,
+      </if>
+      <if test="thryearsrevenue != null">
+        thrYearsRevenue,
+      </if>
+      <if test="thryearsellgrowth != null">
+        thrYearSellgrowth,
+      </if>
+      <if test="getmoneyyear != null">
+        getMoneyYear,
+      </if>
+      <if test="sumnetmargin != null">
+        sumNetMargin,
+      </if>
+      <if test="yearnetmargin != null">
+        yearNetMargin,
+      </if>
+      <if test="thwyearnetmargin != null">
+        thwYearNetMargin,
+      </if>
+      <if test="thryearnetmargin != null">
+        thrYearNetMargin,
+      </if>
+      <if test="thryearresearchinput != null">
+        thrYearResearchInput,
+      </if>
+      <if test="thryeardevdivirev != null">
+        thrYearDevDiviRev,
+      </if>
+      <if test="thryeardevdivisell != null">
+        thrYearDevDiviSell,
+      </if>
+      <if test="thryearcountoftechn != null">
+        thrYearCountOftechn,
+      </if>
+      <if test="technperratio != null">
+        technPerRatio,
+      </if>
+      <if test="changeofcontro != null">
+        changeOfcontro,
+      </if>
+      <if test="changeofmanager != null">
+        changeOfmanager,
+      </if>
+      <if test="changeofmainbus != null">
+        changeOfMainBus,
+      </if>
+      <if test="invisiassetsratio != null">
+        invisiAssetsRatio,
+      </if>
+      <if test="latelynounrecoloss != null">
+        LatelyNoUnrecoLoss,
+      </if>
+      <if test="thryearpipr != null">
+        thrYearPipr,
+      </if>
+      <if test="majoraccident != null">
+        majorAccident,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="addtime != null">
+        addTime,
+      </if>
+      <if test="registertime != null">
+        registerTime,
+      </if>
+      <if test="ldIndustry != null">
+        ld_industry,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="companyStatus != null">
+        company_status,
+      </if>
+      <if test="subsidyAmount != null">
+        subsidy_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entname != null">
+        #{entname,jdbcType=VARCHAR},
+      </if>
+      <if test="indname != null">
+        #{indname,jdbcType=VARCHAR},
+      </if>
+      <if test="encreditid != null">
+        #{encreditid,jdbcType=VARCHAR},
+      </if>
+      <if test="workyear != null">
+        #{workyear,jdbcType=INTEGER},
+      </if>
+      <if test="regmoney != null">
+        #{regmoney,jdbcType=VARCHAR},
+      </if>
+      <if test="comtype != null">
+        #{comtype,jdbcType=INTEGER},
+      </if>
+      <if test="sfwgsqy != null">
+        #{sfwgsqy,jdbcType=INTEGER},
+      </if>
+      <if test="fxqgbze != null">
+        #{fxqgbze,jdbcType=VARCHAR},
+      </if>
+      <if test="fxhgbze != null">
+        #{fxhgbze,jdbcType=VARCHAR},
+      </if>
+      <if test="bgqmgb != null">
+        #{bgqmgb,jdbcType=VARCHAR},
+      </if>
+      <if test="marketvalue != null">
+        #{marketvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="latelynetasset != null">
+        #{latelynetasset,jdbcType=VARCHAR},
+      </if>
+      <if test="thrysersproperty != null">
+        #{thrysersproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="thrysersnetasset != null">
+        #{thrysersnetasset,jdbcType=VARCHAR},
+      </if>
+      <if test="thrquartercash != null">
+        #{thrquartercash,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearsgroofassets != null">
+        #{thryearsgroofassets,jdbcType=VARCHAR},
+      </if>
+      <if test="yearrevenue != null">
+        #{yearrevenue,jdbcType=VARCHAR},
+      </if>
+      <if test="reveandgrowth != null">
+        #{reveandgrowth,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearsrevenue != null">
+        #{thryearsrevenue,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearsellgrowth != null">
+        #{thryearsellgrowth,jdbcType=VARCHAR},
+      </if>
+      <if test="getmoneyyear != null">
+        #{getmoneyyear,jdbcType=INTEGER},
+      </if>
+      <if test="sumnetmargin != null">
+        #{sumnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="yearnetmargin != null">
+        #{yearnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="thwyearnetmargin != null">
+        #{thwyearnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearnetmargin != null">
+        #{thryearnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearresearchinput != null">
+        #{thryearresearchinput,jdbcType=VARCHAR},
+      </if>
+      <if test="thryeardevdivirev != null">
+        #{thryeardevdivirev,jdbcType=VARCHAR},
+      </if>
+      <if test="thryeardevdivisell != null">
+        #{thryeardevdivisell,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearcountoftechn != null">
+        #{thryearcountoftechn,jdbcType=VARCHAR},
+      </if>
+      <if test="technperratio != null">
+        #{technperratio,jdbcType=VARCHAR},
+      </if>
+      <if test="changeofcontro != null">
+        #{changeofcontro,jdbcType=INTEGER},
+      </if>
+      <if test="changeofmanager != null">
+        #{changeofmanager,jdbcType=INTEGER},
+      </if>
+      <if test="changeofmainbus != null">
+        #{changeofmainbus,jdbcType=INTEGER},
+      </if>
+      <if test="invisiassetsratio != null">
+        #{invisiassetsratio,jdbcType=VARCHAR},
+      </if>
+      <if test="latelynounrecoloss != null">
+        #{latelynounrecoloss,jdbcType=INTEGER},
+      </if>
+      <if test="thryearpipr != null">
+        #{thryearpipr,jdbcType=VARCHAR},
+      </if>
+      <if test="majoraccident != null">
+        #{majoraccident,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=DATE},
+      </if>
+      <if test="registertime != null">
+        #{registertime,jdbcType=DATE},
+      </if>
+      <if test="ldIndustry != null">
+        #{ldIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="companyStatus != null">
+        #{companyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidyAmount != null">
+        #{subsidyAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dcits.govsbu.sd.taxbankportal.excel.model.TbEntFinanceNews">
+    update tb_ent_finance_new
+    <set>
+      <if test="entname != null">
+        entName = #{entname,jdbcType=VARCHAR},
+      </if>
+      <if test="indname != null">
+        indName = #{indname,jdbcType=VARCHAR},
+      </if>
+      <if test="encreditid != null">
+        encreditId = #{encreditid,jdbcType=VARCHAR},
+      </if>
+      <if test="workyear != null">
+        workYear = #{workyear,jdbcType=INTEGER},
+      </if>
+      <if test="regmoney != null">
+        regMoney = #{regmoney,jdbcType=VARCHAR},
+      </if>
+      <if test="comtype != null">
+        comType = #{comtype,jdbcType=INTEGER},
+      </if>
+      <if test="sfwgsqy != null">
+        sfwgsqy = #{sfwgsqy,jdbcType=INTEGER},
+      </if>
+      <if test="fxqgbze != null">
+        fxqgbze = #{fxqgbze,jdbcType=VARCHAR},
+      </if>
+      <if test="fxhgbze != null">
+        fxhgbze = #{fxhgbze,jdbcType=VARCHAR},
+      </if>
+      <if test="bgqmgb != null">
+        bgqmgb = #{bgqmgb,jdbcType=VARCHAR},
+      </if>
+      <if test="marketvalue != null">
+        marketValue = #{marketvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="latelynetasset != null">
+        latelyNetAsset = #{latelynetasset,jdbcType=VARCHAR},
+      </if>
+      <if test="thrysersproperty != null">
+        thrYsersProperty = #{thrysersproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="thrysersnetasset != null">
+        thrYsersNetAsset = #{thrysersnetasset,jdbcType=VARCHAR},
+      </if>
+      <if test="thrquartercash != null">
+        thrquarterCash = #{thrquartercash,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearsgroofassets != null">
+        thrYearsGroOfAssets = #{thryearsgroofassets,jdbcType=VARCHAR},
+      </if>
+      <if test="yearrevenue != null">
+        yearRevenue = #{yearrevenue,jdbcType=VARCHAR},
+      </if>
+      <if test="reveandgrowth != null">
+        ReveAndGrowth = #{reveandgrowth,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearsrevenue != null">
+        thrYearsRevenue = #{thryearsrevenue,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearsellgrowth != null">
+        thrYearSellgrowth = #{thryearsellgrowth,jdbcType=VARCHAR},
+      </if>
+      <if test="getmoneyyear != null">
+        getMoneyYear = #{getmoneyyear,jdbcType=INTEGER},
+      </if>
+      <if test="sumnetmargin != null">
+        sumNetMargin = #{sumnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="yearnetmargin != null">
+        yearNetMargin = #{yearnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="thwyearnetmargin != null">
+        thwYearNetMargin = #{thwyearnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearnetmargin != null">
+        thrYearNetMargin = #{thryearnetmargin,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearresearchinput != null">
+        thrYearResearchInput = #{thryearresearchinput,jdbcType=VARCHAR},
+      </if>
+      <if test="thryeardevdivirev != null">
+        thrYearDevDiviRev = #{thryeardevdivirev,jdbcType=VARCHAR},
+      </if>
+      <if test="thryeardevdivisell != null">
+        thrYearDevDiviSell = #{thryeardevdivisell,jdbcType=VARCHAR},
+      </if>
+      <if test="thryearcountoftechn != null">
+        thrYearCountOftechn = #{thryearcountoftechn,jdbcType=VARCHAR},
+      </if>
+      <if test="technperratio != null">
+        technPerRatio = #{technperratio,jdbcType=VARCHAR},
+      </if>
+      <if test="changeofcontro != null">
+        changeOfcontro = #{changeofcontro,jdbcType=INTEGER},
+      </if>
+      <if test="changeofmanager != null">
+        changeOfmanager = #{changeofmanager,jdbcType=INTEGER},
+      </if>
+      <if test="changeofmainbus != null">
+        changeOfMainBus = #{changeofmainbus,jdbcType=INTEGER},
+      </if>
+      <if test="invisiassetsratio != null">
+        invisiAssetsRatio = #{invisiassetsratio,jdbcType=VARCHAR},
+      </if>
+      <if test="latelynounrecoloss != null">
+        LatelyNoUnrecoLoss = #{latelynounrecoloss,jdbcType=INTEGER},
+      </if>
+      <if test="thryearpipr != null">
+        thrYearPipr = #{thryearpipr,jdbcType=VARCHAR},
+      </if>
+      <if test="majoraccident != null">
+        majorAccident = #{majoraccident,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addTime = #{addtime,jdbcType=DATE},
+      </if>
+      <if test="registertime != null">
+        registerTime = #{registertime,jdbcType=DATE},
+      </if>
+      <if test="ldIndustry != null">
+        ld_industry = #{ldIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="companyStatus != null">
+        company_status = #{companyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidyAmount != null">
+        subsidy_amount = #{subsidyAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.govsbu.sd.taxbankportal.excel.model.TbEntFinanceNews">
+    update tb_ent_finance_new
+    set entName = #{entname,jdbcType=VARCHAR},
+      indName = #{indname,jdbcType=VARCHAR},
+      encreditId = #{encreditid,jdbcType=VARCHAR},
+      workYear = #{workyear,jdbcType=INTEGER},
+      regMoney = #{regmoney,jdbcType=VARCHAR},
+      comType = #{comtype,jdbcType=INTEGER},
+      sfwgsqy = #{sfwgsqy,jdbcType=INTEGER},
+      fxqgbze = #{fxqgbze,jdbcType=VARCHAR},
+      fxhgbze = #{fxhgbze,jdbcType=VARCHAR},
+      bgqmgb = #{bgqmgb,jdbcType=VARCHAR},
+      marketValue = #{marketvalue,jdbcType=VARCHAR},
+      latelyNetAsset = #{latelynetasset,jdbcType=VARCHAR},
+      thrYsersProperty = #{thrysersproperty,jdbcType=VARCHAR},
+      thrYsersNetAsset = #{thrysersnetasset,jdbcType=VARCHAR},
+      thrquarterCash = #{thrquartercash,jdbcType=VARCHAR},
+      thrYearsGroOfAssets = #{thryearsgroofassets,jdbcType=VARCHAR},
+      yearRevenue = #{yearrevenue,jdbcType=VARCHAR},
+      ReveAndGrowth = #{reveandgrowth,jdbcType=VARCHAR},
+      thrYearsRevenue = #{thryearsrevenue,jdbcType=VARCHAR},
+      thrYearSellgrowth = #{thryearsellgrowth,jdbcType=VARCHAR},
+      getMoneyYear = #{getmoneyyear,jdbcType=INTEGER},
+      sumNetMargin = #{sumnetmargin,jdbcType=VARCHAR},
+      yearNetMargin = #{yearnetmargin,jdbcType=VARCHAR},
+      thwYearNetMargin = #{thwyearnetmargin,jdbcType=VARCHAR},
+      thrYearNetMargin = #{thryearnetmargin,jdbcType=VARCHAR},
+      thrYearResearchInput = #{thryearresearchinput,jdbcType=VARCHAR},
+      thrYearDevDiviRev = #{thryeardevdivirev,jdbcType=VARCHAR},
+      thrYearDevDiviSell = #{thryeardevdivisell,jdbcType=VARCHAR},
+      thrYearCountOftechn = #{thryearcountoftechn,jdbcType=VARCHAR},
+      technPerRatio = #{technperratio,jdbcType=VARCHAR},
+      changeOfcontro = #{changeofcontro,jdbcType=INTEGER},
+      changeOfmanager = #{changeofmanager,jdbcType=INTEGER},
+      changeOfMainBus = #{changeofmainbus,jdbcType=INTEGER},
+      invisiAssetsRatio = #{invisiassetsratio,jdbcType=VARCHAR},
+      LatelyNoUnrecoLoss = #{latelynounrecoloss,jdbcType=INTEGER},
+      thrYearPipr = #{thryearpipr,jdbcType=VARCHAR},
+      majorAccident = #{majoraccident,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=VARCHAR},
+      addTime = #{addtime,jdbcType=DATE},
+      registerTime = #{registertime,jdbcType=DATE},
+      ld_industry = #{ldIndustry,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      company_status = #{companyStatus,jdbcType=VARCHAR},
+      subsidy_amount = #{subsidyAmount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
