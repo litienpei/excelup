@@ -54,7 +54,7 @@
 		<commons-logging.version>1.2</commons-logging.version>
 		<mybatis-spring.version>1.2.3</mybatis-spring.version>
 		<mybatis-ehcache.version>1.0.2</mybatis-ehcache.version>
-		<commons-beanutils.version>1.8.3</commons-beanutils.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		<commons-fileupload.version>1.3.1</commons-fileupload.version>
 		<commons-collections.version>3.2.2</commons-collections.version>
 		<commons-dbcp2.version>2.1</commons-dbcp2.version>
