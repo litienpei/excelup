@@ -35,7 +35,7 @@
 		<shiro.version>1.2.5</shiro.version>
 		<log4j.version>1.2.17</log4j.version>
 		<druid.version>1.0.18</druid.version>
-		<mysql.version>5.1.30</mysql.version>
+		<mysql.version>8.0.16</mysql.version>
 		<aspectj.version>1.8.6</aspectj.version>
 		<hamcrest.version>1.3</hamcrest.version>
 		<taglibs.version>1.1.0</taglibs.version>
