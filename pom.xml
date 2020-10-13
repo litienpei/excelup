@@ -31,7 +31,7 @@
 		<jstl.version>1.2</jstl.version>
 		<asm.version>3.3.1</asm.version>
 		<jodd.version>3.6.7</jodd.version>
-		<junit.version>4.11</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<shiro.version>1.2.5</shiro.version>
 		<log4j.version>1.2.17</log4j.version>
 		<druid.version>1.0.18</druid.version>
