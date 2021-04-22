@@ -40,7 +40,7 @@
 		<hamcrest.version>1.3</hamcrest.version>
 		<taglibs.version>1.1.0</taglibs.version>
 		<ehcache.version>2.6.11</ehcache.version>
-		<mybatis.version>3.3.0</mybatis.version>
+		<mybatis.version>3.5.6</mybatis.version>
 		<pagehelper.version>4.1.0</pagehelper.version>
 		<fastjson.version>1.2.5</fastjson.version>
 		<slf4j-api.version>1.7.12</slf4j-api.version>
